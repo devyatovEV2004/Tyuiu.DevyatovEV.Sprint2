@@ -1,25 +1,32 @@
 ﻿using Tyuiu.DevyatovEV.Sprint2.Task5.V13.Lib;
+
 namespace Tyuiu.DevyatovEV.Sprint2.Task5.V13.Test
 {
     [TestClass]
-    public class DataServiceTest
+    public sealed class DataServiceTest
     {
         [TestMethod]
-        public void TestGetNextDay()
+        public void TestEndOfMonth()
         {
-            DataService ds = new DataService();
+            var ds = new DataService();
+            string result = ds.FindDateOfNextDay(2023, 3, 31);
+            Assert.AreEqual("01.04.2023", result);
+        }
 
-            var res = ds.FindDateOfNextDay(2020, 2, 28);
-            Assert.AreEqual((2020, 2, 29), res);
+        [TestMethod]
+        public void TestMiddleOfMonth()
+        {
+            var ds = new DataService();
+            string result = ds.FindDateOfNextDay(2023, 5, 10);
+            Assert.AreEqual("11.05.2023", result);
+        }
 
-            res = ds.FindDateOfNextDay(2020, 2, 29);
-            Assert.AreEqual((2020, 3, 1), res);
-
-            res = ds.FindDateOfNextDay(2020, 12, 31);
-            Assert.AreEqual((2021, 1, 1), res);
-
-            res = ds.FindDateOfNextDay(2020, 4, 30);
-            Assert.AreEqual((2020, 5, 1), res);
+        [TestMethod]
+        public void TestEndOfYear()
+        {
+            var ds = new DataService();
+            string result = ds.FindDateOfNextDay(2023, 12, 31);
+            Assert.AreEqual("01.01.2024", result);
         }
     }
 }

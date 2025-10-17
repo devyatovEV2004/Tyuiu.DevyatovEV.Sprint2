@@ -3,9 +3,8 @@ namespace Tyuiu.DevyatovEV.Sprint2.Task5.V13
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            DataService ds = new DataService();
             Console.Title = "Спринт #2 | Выполнил: Девятов Е.В. | ИСТНб-25-1";
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт #2                                                               *");
@@ -21,22 +20,23 @@ namespace Tyuiu.DevyatovEV.Sprint2.Task5.V13
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
 
-            Console.WriteLine("Введите год (g):");
-            int g = int.Parse(Console.ReadLine());
+            Console.Write("Введите год (g): ");
+            int g = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите месяц (m): ");
+            int m = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите день (n): ");
+            int n = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Введите месяц (m):");
-            int m = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Введите число (n):");
-            int n = int.Parse(Console.ReadLine());
+            var ds = new DataService();
+            string res = ds.FindDateOfNextDay(g, m, n);
 
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
 
-            var nextDay = ds.FindDateOfNextDay(g, m, n);
+            Console.WriteLine($"Следующий день: {res}");
 
-            Console.WriteLine($"Следующий день: {nextDay.day}.{nextDay.month}.{nextDay.year}");
+            Console.WriteLine("Нажмите любую клавишу для выхода...");
             Console.ReadKey();
         }
     }

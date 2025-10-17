@@ -3,12 +3,15 @@ namespace Tyuiu.DevyatovEV.Sprint2.Task5.V13.Lib
 {
     public class DataService : ISprint2Task5V13
     {
-        public (int year, int month, int day) FindDateOfNextDay(int g, int m, int n)
+        public string FindDateOfNextDay(int g, int m, int n)
         {
+            int day = n;
+            int month = m;
+            int year = g;
+
             int daysInMonth = 0;
 
-
-            switch (m)
+            switch (month)
             {
                 case 1:
                 case 3:
@@ -26,25 +29,27 @@ namespace Tyuiu.DevyatovEV.Sprint2.Task5.V13.Lib
                     daysInMonth = 30;
                     break;
                 case 2:
-                    daysInMonth = 29;
+                    // год невисокосный
+                    daysInMonth = 28;
                     break;
                 default:
                     throw new ArgumentException("Неверный номер месяца");
             }
 
-            n++;
+            day++;
 
-            if (n > daysInMonth)
+            if (day > daysInMonth)
             {
-                n = 1;
-                m++;
-                if (m > 12)
+                day = 1;
+                month++;
+                if (month > 12)
                 {
-                    m = 1;
-                    g++;
+                    month = 1;
+                    year++;
                 }
             }
-            return (g, m, n);
+
+            return $"{day:D2}.{month:D2}.{year}";
         }
     }
 }
